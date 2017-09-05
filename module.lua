@@ -28,12 +28,11 @@ function M.load(gameModuleName)
     if firstRun and M.Game.load then
       M.Game.load()
     end
+    -- call the game module's hotload function
+    M.Game.hotload(prevState)
     for _, callback in pairs(M.loveCallbacks) do
       love[callback] = M.Game[callback]
     end
-
-    -- call the game module's hotload function
-    M.Game.hotload(prevState)
     print(string.format('hotloaded %s module', gameModuleName), M.Game)
   end
 
